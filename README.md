@@ -1,7 +1,7 @@
 # 🔍 Arcane EXE Analyzer
 
 Arcane EXE Analyzer est un outil OSINT qui analyse les fichiers exécutables Windows (.exe) pour extraire des informations utiles et générer un **rapport PDF** détaillé.
-
+ 
 ## 📊 Fonctionnalités  
 
 - 📂 **Sections PE** et leurs caractéristiques  
