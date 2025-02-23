@@ -21,13 +21,15 @@ cd Arcane-EXE-Analyzer
 pip install -r requirements.txt
 ## 📄 Rapport Généré  
 
-Le rapport PDF contient :  
+📄 Rapport Généré
+Le rapport PDF contient :
 
-```plaintext
-✔️ Nom du fichier analysé  
-✔️ Imports DLL & bibliothèques utilisées  
-✔️ Sections PE et leurs caractéristiques  
-✔️ Chaînes de caractères détectées  
-✔️ Requêtes réseau extraites  
-Cet outil est fourni à des fins éducatives et d’investigation OSINT uniquement.  
-L’utilisateur est responsable de son utilisation.  
+✔️ Nom du fichier analysé
+✔️ Imports DLL & bibliothèques utilisées
+✔️ Sections PE et leurs caractéristiques
+✔️ Chaînes de caractères détectées
+✔️ Requêtes réseau extraites
+
+⚠️ Avertissement
+Cet outil est fourni à des fins éducatives et d’investigation OSINT uniquement. L’utilisateur est responsable de son utilisation.
+
