@@ -1,35 +1,46 @@
-# 🔍 Arcane EXE Analyzer  
+# 🔍 Arcane EXE Analyzer
 
-Arcane EXE Analyzer est un **outil OSINT en Python** permettant d’analyser des fichiers exécutables Windows (`.exe`). Il extrait diverses informations utiles pour l’investigation et la cybersécurité.  
+Arcane EXE Analyzer est un outil OSINT qui analyse les fichiers exécutables Windows (.exe) pour extraire des informations utiles et générer un **rapport PDF** détaillé.
 
-## 📌 Fonctionnalités  
+## 📊 Fonctionnalités  
 
-- **Analyse des fichiers exécutables** (`.exe`)
-- **Extraction des sections PE et des imports DLL**
-- **Détection des chaînes de caractères sensibles**
-- **Identification des requêtes réseau**
-- **Génération automatique d’un rapport PDF**
-- **Interface graphique simple avec `tkinter`**
+- 📂 **Sections PE** et leurs caractéristiques  
+- 🔍 **Imports DLL** et bibliothèques utilisées  
+- 📜 **Chaînes de caractères** détectées  
+- 🌐 **Requêtes réseau** extraites  
+- 📄 **Génération automatique d’un rapport PDF**  
 
-## 📂 Installation  
-
-Avant de commencer, assurez-vous d’avoir **Python 3.x** installé.  
-
-```bash
-git clone https://github.com/votre-utilisateur/Arcane-EXE-Analyzer.git
-cd Arcane-EXE-Analyzer
-pip install -r requirements.txt
 ## 📄 Rapport Généré  
 
-📄 Rapport Généré
-Le rapport PDF contient :
+Le rapport contient :  
 
-✔️ Nom du fichier analysé
-✔️ Imports DLL & bibliothèques utilisées
-✔️ Sections PE et leurs caractéristiques
-✔️ Chaînes de caractères détectées
-✔️ Requêtes réseau extraites
+✔️ **Nom du fichier analysé**  
+✔️ **Imports DLL & bibliothèques utilisées**  
+✔️ **Sections PE et leurs caractéristiques**  
+✔️ **Chaînes de caractères détectées**  
+✔️ **Requêtes réseau extraites**  
 
-⚠️ Avertissement
-Cet outil est fourni à des fins éducatives et d’investigation OSINT uniquement. L’utilisateur est responsable de son utilisation.
+## ⚠️ Avertissement  
 
+Cet outil est fourni à des fins **éducatives et d’investigation OSINT uniquement**.  
+L’utilisateur est entièrement responsable de son utilisation.  
+
+## 📦 Installation  
+
+### 1️⃣ **Cloner le dépôt**  
+```bash
+git clone https://github.com/votre-utilisateur/arcane-exe-analyzer.git
+cd arcane-exe-analyzer
+2️⃣ Installer les dépendances
+bash
+Copy
+Edit
+pip install -r requirements.txt
+3️⃣ Lancer l'outil
+bash
+Copy
+Edit
+python Arcane.py
+🛠️ Pré-requis
+Python 3.8+
+Modules : pefile, fpdf, tkinter
