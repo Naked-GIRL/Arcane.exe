@@ -1,10 +1,10 @@
 import os
 import pefile
 import re
-import tkinter as tk
-from tkinter import filedialog, messagebox, ttk
-from fpdf import FPDF
 import subprocess
+import customtkinter as ctk
+from tkinter import filedialog, messagebox
+from fpdf import FPDF
 
 # Fonction pour créer la structure de dossiers
 def create_folder_structure(base_dir):
@@ -90,8 +90,8 @@ def analyze_exe(exe_path, progress_label, progress_bar):
     base_dir = 'analysis_results'
     create_folder_structure(base_dir)
 
-    progress_label.config(text="Analyse en cours...")
-    progress_bar.start(10)
+    progress_label.configure(text="Analyse en cours...")  # Correction ici
+    progress_bar.start()  # Démarre l'animation de la barre de progression
 
     strings = extract_strings(exe_path)
     passwords = find_passwords(strings)
@@ -108,8 +108,8 @@ def analyze_exe(exe_path, progress_label, progress_bar):
 
     generate_pdf_report(base_dir, exe_path, sections, imports, passwords, requests)
 
-    progress_label.config(text="Analyse terminée!")
-    progress_bar.stop()
+    progress_label.configure(text="Analyse terminée!")  # Correction ici
+    progress_bar.stop()  # Arrête l'animation de la barre de progression
     messagebox.showinfo("Analyse terminée", f"Les résultats sont stockés dans : {base_dir}")
 
 # Fenêtre Tkinter pour choisir le fichier .exe
@@ -118,23 +118,68 @@ def browse_file(progress_label, progress_bar):
     if file_path:
         analyze_exe(file_path, progress_label, progress_bar)
 
-# Création de l'interface graphique
-def create_gui():
-    root = tk.Tk()
-    root.title("Analyseur de fichiers .exe")
-    root.geometry("500x300")
+# Fenêtre Tkinter pour afficher les résultats avec boutons
+def open_results(base_dir):
+    def open_report():
+        report_path = os.path.join(base_dir, 'reports', 'analysis_report.pdf')
+        if os.path.exists(report_path):
+            os.startfile(report_path)
+        else:
+            messagebox.showerror("Erreur", "Le rapport PDF n'a pas été trouvé.")
 
-    title_label = tk.Label(root, text="Sélectionner un fichier .exe à analyser", font=("Arial", 14))
+    def open_passwords():
+        passwords_path = os.path.join(base_dir, 'passwords', 'found_passwords.txt')
+        if os.path.exists(passwords_path):
+            os.startfile(passwords_path)
+        else:
+            messagebox.showerror("Erreur", "Le fichier des mots de passe n'a pas été trouvé.")
+
+    def open_requests():
+        requests_path = os.path.join(base_dir, 'requests', 'found_requests.txt')
+        if os.path.exists(requests_path):
+            os.startfile(requests_path)
+        else:
+            messagebox.showerror("Erreur", "Le fichier des requêtes HTTP n'a pas été trouvé.")
+
+    results_window = ctk.CTkToplevel()
+    results_window.title("Résultats de l'Analyse")
+    results_window.geometry("400x300")
+
+    open_report_button = ctk.CTkButton(results_window, text="Ouvrir le rapport PDF", command=open_report)
+    open_report_button.pack(pady=10)
+
+    open_passwords_button = ctk.CTkButton(results_window, text="Ouvrir les mots de passe", command=open_passwords)
+    open_passwords_button.pack(pady=10)
+
+    open_requests_button = ctk.CTkButton(results_window, text="Ouvrir les requêtes HTTP", command=open_requests)
+    open_requests_button.pack(pady=10)
+
+    close_button = ctk.CTkButton(results_window, text="Fermer", command=results_window.destroy)
+    close_button.pack(pady=20)
+
+# Création de l'interface graphique avec customtkinter
+def create_gui():
+    ctk.set_appearance_mode("System")  # Mode de couleur selon le système (clair ou sombre)
+    ctk.set_default_color_theme("blue")  # Choisir un thème de couleurs
+
+    root = ctk.CTk()
+    root.title("Analyseur de fichiers .exe")
+    root.geometry("500x350")
+
+    title_label = ctk.CTkLabel(root, text="Sélectionner un fichier .exe à analyser", font=("Arial", 16))
     title_label.pack(pady=10)
 
-    progress_label = tk.Label(root, text="", font=("Arial", 12))
+    progress_label = ctk.CTkLabel(root, text="", font=("Arial", 12))
     progress_label.pack(pady=10)
 
-    progress_bar = ttk.Progressbar(root, length=300, mode='indeterminate')
+    progress_bar = ctk.CTkProgressBar(root, width=300)
     progress_bar.pack(pady=10)
 
-    browse_button = tk.Button(root, text="Choisir un fichier", font=("Arial", 12), command=lambda: browse_file(progress_label, progress_bar))
+    browse_button = ctk.CTkButton(root, text="Choisir un fichier", font=("Arial", 14), command=lambda: browse_file(progress_label, progress_bar))
     browse_button.pack(pady=20)
+
+    results_button = ctk.CTkButton(root, text="Voir les résultats", font=("Arial", 14), command=lambda: open_results('analysis_results'))
+    results_button.pack(pady=10)
 
     root.mainloop()
 
