@@ -31,16 +31,4 @@ L’utilisateur est entièrement responsable de son utilisation.
 ```bash
 git clone https://github.com/votre-utilisateur/arcane-exe-analyzer.git
 cd arcane-exe-analyzer
-2️⃣ Installer les dépendances
-bash
-Copy
-Edit
-pip install -r requirements.txt
-3️⃣ Lancer l'outil
-bash
-Copy
-Edit
-python Arcane.py
-🛠️ Pré-requis
-Python 3.8+
-Modules : pefile, fpdf, tkinter
+
